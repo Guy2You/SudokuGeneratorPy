@@ -48,6 +48,7 @@ class SudokuPuzzle:
 		for i in range(self.side_length):
 			for j in range(self.side_length):
 				full = full and self.get_tile(i, j) in self.number_set
+		return full
 
 	def is_valid(self):
 		"""
@@ -85,9 +86,15 @@ class SudokuPuzzle:
 def main():
 	puzzle = SudokuPuzzle()
 	for i in range(9):
-		puzzle.set_tile(i, i, i + 1)
+		for j in range(9):
+			puzzle.set_tile(i, j, j + 1)
 	for i in range(9):
 		print(puzzle.get_row(i))
+
+	print(f"{'is full: ':<25}{str(puzzle.is_full())}")
+	print(f"{'is valid: ':<25}{str(puzzle.is_valid())}")
+	print(f"{'is complete: ':<25}{str(puzzle.is_complete())}")
+	print(f"{'contains invalid values: ':<25}{str(puzzle.contains_invalid_values())}")
 
 
 if __name__ == "__main__": main()
